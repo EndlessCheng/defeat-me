@@ -5,8 +5,11 @@ import android.graphics.PointF;
 public class Operation {
     public static float R = 10.0f;
 
-    private static final float[][] BULLET_DXDY = {
+    public static final float[][] BULLET_DXDY = {
             {0.0f, 18.0f},
+            {0.0f, 18.0f},
+            {0.0f, 18.0f, -9.0f * (float) Math.sqrt(2.0f), 9.0f * (float) Math.sqrt(2.0f), 9.0f * (float) Math.sqrt(2.0f), 9.0f * (float) Math.sqrt(2.0f)},
+            {0.0f, 18.0f, -9.0f * (float) Math.sqrt(2.0f), 9.0f * (float) Math.sqrt(2.0f), 9.0f * (float) Math.sqrt(2.0f), 9.0f * (float) Math.sqrt(2.0f)},
     };
 
     private PointF center;
@@ -35,7 +38,7 @@ public class Operation {
         return center;
     }
 
-    public int getType(){
+    public int getType() {
         return type;
     }
 

@@ -137,13 +137,13 @@ public class DefeatMeView extends SurfaceView implements Runnable,
 
     @Override
     public void run() {
-        long waitTime = 0L;
         long startTime = System.currentTimeMillis();
 
         for (long endTime = FRAME_TIME; thread != null; endTime += FRAME_TIME, ++frameCount) {
             canvas = surfaceHolder.lockCanvas();
 
             canvas.drawRect(0.0f, 0.0f, screenWidth, screenHeight, bgPaint);
+            drawBullets();
             paint.setColor(COLORS_ARRAY[enemies.size() % COLORS_ARRAY.length]);
             canvas.drawText(String.valueOf(enemies.size()), 20, 100, paint);
             canvas.drawCircle(playerCenter.x, playerCenter.y, PLAYER_R, paint);
@@ -154,13 +154,12 @@ public class DefeatMeView extends SurfaceView implements Runnable,
                     drawOperation(enemy);
                 }
             }
-            drawBullets();
             if (leftEnemies == 0) endLevel();
             if (loseOut) startGame();
 
             surfaceHolder.unlockCanvasAndPost(canvas);
 
-            waitTime = endTime - (System.currentTimeMillis() - startTime);
+            long waitTime = endTime - (System.currentTimeMillis() - startTime);
             if (waitTime > 0L) {
                 try {
                     Thread.sleep(waitTime);
@@ -198,13 +197,11 @@ public class DefeatMeView extends SurfaceView implements Runnable,
         else if (y + PLAYER_R > screenHeight) y = screenHeight - PLAYER_R;
         playerCenter.set(x, y);
         nextEnemy.putOperation(frameCount, new Operation(x, screenHeight - y, 0));
-        Log.i(TAG, "frame: " + frameCount + " move: " + nextEnemy.toString());
     }
 
     private void shoot() {
         addBullets.add(new Operation(playerCenter.x, playerCenter.y, -enemies.size()));
         nextEnemy.putOperation(frameCount, new Operation(playerCenter.x, screenHeight - playerCenter.y, enemies.size()));
-        Log.i(TAG, "frame: " + frameCount + " shoot: " + nextEnemy.toString());
     }
 
     private void drawBullets() {
