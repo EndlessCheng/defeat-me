@@ -144,9 +144,10 @@ public class DefeatMeView extends SurfaceView implements Runnable,
 
         for (long endTime = FRAME_TIME; thread != null; endTime += FRAME_TIME, ++frameCount) {
             canvas = surfaceHolder.lockCanvas();
-            canvas.drawRect(0.0f, 0.0f, screenWidth, screenHeight, bgPaint);
 
+            canvas.drawRect(0.0f, 0.0f, screenWidth, screenHeight, bgPaint);
             paint.setColor(COLORS_ARRAY[enemies.size() % COLORS_ARRAY.length]);
+            canvas.drawText(String.valueOf(enemies.size()), 20, 100, paint);
             canvas.drawCircle(playerCenter.x, playerCenter.y, PLAYER_R, paint);
             for (int i = 0; i < enemies.size(); ++i) {
                 Enemy enemy = enemies.get(i);
@@ -156,16 +157,8 @@ public class DefeatMeView extends SurfaceView implements Runnable,
                 }
             }
             drawBullets();
-
-            paint.setColor(COLORS_ARRAY[0]);
-            canvas.drawText(String.valueOf(enemies.size()), 20, 100, paint);
-
-            if (leftEnemies == 0) {
-                endLevel();
-            }
-            if (loseOut) {
-                startGame();
-            }
+            if (leftEnemies == 0) endLevel();
+            if (loseOut) startGame();
 
             surfaceHolder.unlockCanvasAndPost(canvas);
 
