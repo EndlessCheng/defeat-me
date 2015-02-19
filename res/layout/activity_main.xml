@@ -1,13 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-        >
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World, MainActivity"
-            />
-</LinearLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
+                tools:context=".MainActivity">
+
+    <!--<TextView-->
+    <!--android:id="@+id/hello"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/hello_world"/>-->
+
+    <!--<SeekBar-->
+    <!--android:id="@+id/seekbar"-->
+    <!--android:layout_below="@id/hello"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:max="60"-->
+    <!--android:progress="20"-->
+    <!--android:thumb="@drawable/ic_launcher"-->
+    <!--/>-->
+
+    <com.endless.android.defeat_me.DefeatMeView
+            android:id="@+id/running_ball"
+
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>
