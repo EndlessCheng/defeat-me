@@ -120,9 +120,7 @@ public class DefeatMeView extends SurfaceView implements Runnable,
         bullets.clear();
 
         playerCenter.set(screenWidth / 2, screenHeight - screenHeight / 10);
-
         leftEnemies = enemies.size();
-
         for (Enemy enemy : enemies) {
             enemy.setDied(false);
         }
