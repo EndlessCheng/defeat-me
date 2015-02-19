@@ -183,20 +183,13 @@ public class DefeatMeView extends SurfaceView implements Runnable,
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
-//                Log.i(TAG, "ACTION_DOWN");
-//                Log.i(TAG, "x: " + event.getX() + ", y: " + event.getY());
                 checkDownPositionInCircle(event.getX(), event.getY());
                 if (!inCircle) shoot();
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
-//                Log.i(TAG, "ACTION_POINTER_DOWN");
-//                Log.i(TAG, "x(0): " + event.getX(0) + ", y(0): " + event.getY(0));
-//                Log.i(TAG, "x(1): " + event.getX(1) + ", y(1): " + event.getY(1));
                 shoot();
                 break;
             case MotionEvent.ACTION_MOVE:
-//                Log.i(TAG, "ACTION_MOVE");
-//                Log.i(TAG, "x: " + event.getX() + ", y: " + event.getY());
                 if (inCircle) move(event.getX(), event.getY());
                 break;
         }
@@ -226,10 +219,6 @@ public class DefeatMeView extends SurfaceView implements Runnable,
     private void drawBullets() {
         bullets.addAll(addBullets);
         addBullets.clear();
-//        Log.i(TAG, "bullets.size(): " + bullets.size());
-//        if (bullets.size() > 0) {
-//            Log.i(TAG, "bullet[0]" + bullets.iterator().next().toString());
-//        }
         for (Operation bullet : bullets) {
             if (loseOut) return;
             if (!bullet.changePos() || checkCollided(bullet)) {
