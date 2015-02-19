@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.PointF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -221,7 +220,8 @@ public class DefeatMeView extends SurfaceView implements Runnable,
 
     private boolean checkCollided(Operation operation) {
         if (operation.isPlayerBullet()) {
-            for (Enemy enemy : enemies) {
+            for (int i = 0; i < enemies.size(); ++i) {
+                Enemy enemy = enemies.get(i);
                 if (!enemy.isDied() && checkTwoCircleCollided(operation.getCenter(), enemy.getCenter())) {
                     enemy.setDied(true);
                     --leftEnemies;
