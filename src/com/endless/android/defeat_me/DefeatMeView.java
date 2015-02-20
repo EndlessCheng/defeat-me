@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.PointF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -107,6 +108,7 @@ public class DefeatMeView extends SurfaceView implements Runnable,
     private void startGame() {
         loseOut = false;
 
+        playerCenter.set(screenWidth / 2, screenHeight - screenHeight / 10);
         enemies.clear();
         enemies.add(new Enemy());
 
@@ -118,7 +120,6 @@ public class DefeatMeView extends SurfaceView implements Runnable,
         removeBullets.clear();
         bullets.clear();
 
-        playerCenter.set(screenWidth / 2, screenHeight - screenHeight / 10);
         leftEnemies = enemies.size();
         for (Enemy enemy : enemies) {
             enemy.setDied(false);
@@ -181,8 +182,16 @@ public class DefeatMeView extends SurfaceView implements Runnable,
             case MotionEvent.ACTION_MOVE:
                 if (inCircle) move(event.getX(), event.getY());
                 break;
+            case MotionEvent.ACTION_UP:
+                debugAction("ACTION_UP", event);
+                inCircle = false;
+                break;
         }
         return true;
+    }
+
+    private void debugAction(String actionName, MotionEvent event) {
+        Log.i(TAG, actionName + " at x=" + event.getX() + ", y=" + event.getY());
     }
 
     private void checkDownPositionInCircle(float x, float y) {
@@ -253,5 +262,9 @@ public class DefeatMeView extends SurfaceView implements Runnable,
         } else { // shoot
             addBullets.add(operation);
         }
+    }
+
+    public PointF getPlayerCenter() {
+        return playerCenter;
     }
 }

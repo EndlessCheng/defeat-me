@@ -54,9 +54,9 @@ public class Operation {
         return type == 0;
     }
 
-    public boolean isEnemyBullet() {
-        return type > 0;
-    }
+//    public boolean isEnemyBullet() {
+//        return type > 0;
+//    }
 
 //    public int getType() {
 //        return type;
